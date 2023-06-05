@@ -301,5 +301,5 @@ def find_currency_id_in_dic(currencies_dic, search_currency_name):
     return 1
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
 
