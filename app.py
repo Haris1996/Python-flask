@@ -873,15 +873,12 @@ def bank_accounts_analysis_excel():
     try:
         bank_accounts_data_array = request.json
         headers = request.headers
-        print(bank_accounts_data_array)
         print(headers)
-        user_name = headers['user_name']
+        user_name = headers['userName']
         password = headers['password']
         if authenticate_user(user_name, password):
             json_data = json.dumps(bank_accounts_data_array, cls=CustomJSONEncoder)
             analysis_dic = generate_full_bank_accounts_analysis(bank_accounts_data_array)
-            print(json_data)
-            print(analysis_dic)
             write_to_unknown_records(analysis_dic)
             analysis_excel_file = create_excel_analysis(analysis_dic)
             write_files_to_s3_bucket(json_data, analysis_excel_file, user_name)
